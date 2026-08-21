@@ -1,0 +1,14 @@
+{
+  "Tests":
+  [
+    {
+      "InputPrompt": "Why does the app need my location, and what happens to that data?",
+
+      "Response": "The app uses your location primarily for safety and crisis management purposes. For example, if you enable features like 'Track Me During Travel', the system collects your location data so your organization can know your whereabouts during travel for your protection. In emergencies, such as when you use the SOS panic button, your location helps responders find and assist you quickly. Regarding your location data, it is collected only when you enable tracking features and is used to support your safety and crisis response. The app also manages location data carefully by filtering out inaccurate or unrealistic GPS points to ensure reliable tracking. You can disable tracking anytime to stop sharing your location.",
+
+      "Reference": "Crises Control handles location data primarily for safety and crisis management purposes, such as targeted alerts and incident mapping. Location data is collected only when tracking features are enabled and is managed carefully to ensure accuracy. The platform supports GDPR compliance by managing data protection, breach management, and documentation. For detailed setup, users define company locations with addresses and coordinates to enable effective response. You can disable tracking anytime to stop sharing your location.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    }
+  ]
+}

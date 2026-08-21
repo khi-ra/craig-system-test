@@ -1,0 +1,28 @@
+{
+  "Tests": 
+  [
+    {
+      "Id": "P01",
+
+      "InputPrompt": "Can I attach a photo to a ping, and how do people open it?",
+
+      "Response": "Yes, you can attach a photo to a ping message. When creating a new ping, click the camera icon in the top right corner to add images from your device's gallery or capture photos instantly. Recipients receive the photo as a secure link to the Crises Control cloud, ensuring compliance with GDPR by protecting personal data. They can open the photo by clicking the link in the ping message, which takes them to the secure space to view the image.",
+
+      "Reference": "FACTS: When creating a ping, a user can attach photos by clicking the 'upload' button in the 'message' section. Recepients of that ping can view the attachments via the portal or click the download link in the email sent to them.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    },
+
+    {
+      "Id": "P02",
+
+      "InputPrompt": "Read out who acknowledged the last ping I sent.",
+
+      "Response": "I will check your most recent ping messages and see who has acknowledged them. Please hold on a moment.",
+
+      "Reference": "Your last ping was sent on 20th August 2026 at 5:39 PM with the content 'test' and has no users who have acknowledged it yet. If you want, I can check acknowledgements for other recent pings or assist you with anything else.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    }
+  ]
+}

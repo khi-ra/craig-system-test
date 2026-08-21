@@ -1,0 +1,28 @@
+{
+  "Tests": 
+  [
+    {
+      "Id": "TM01",
+
+      "InputPrompt": "How do I mark a task as complete on the mobile app?",
+
+      "Response": "To mark a task as complete on the Crises Control mobile app, follow these steps: 1. Open the app and go to your assigned tasks. 2. Select the task you want to complete. 3. On the task screen, you will see an option labeled 'Complete'. 4. Tap 'Complete' to communicate that you have finished the task. If the task has a checklist, make sure all checklist items are marked as done before completing the task. Let me know if you need guidance on handling checklists or anything else.",
+
+      "Reference": "To mark a task as complete on the Crises Control mobile app, follow these steps: 1. Open the app and go to your assigned tasks. 2. Select the task you want to complete. 3. On the task screen, you will see an option labeled 'Complete'. 4. Tap 'Complete' to communicate that you have finished the task. Make sure all mandatory checklist items are marked as done, otherwise you will not be able to mark the task as complete. Let me know if you need guidance on handling checklists or anything else.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    },
+
+    {
+      "Id": "TM02",
+
+      "InputPrompt": "What happens if a task isn't completed before its deadline?",
+
+      "Response": "If a task isn't completed before its deadline, it escalates to the Escalation Team members who are set up to take ownership if the Action Team does not accept or complete the task within the allotted time. This ensures the task is addressed promptly even if the original assignees do not complete it on time.",
+
+      "Reference": "If a task isn't completed before its deadline, it escalates to the Escalation Team members who are set up to take ownership if the Action Team does not accept or complete the task within the allotted time. This ensures the task is addressed promptly even if the original assignees do not complete it on time.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    }
+  ]
+}

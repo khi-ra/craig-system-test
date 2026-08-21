@@ -1,0 +1,29 @@
+{ 
+  "Tests": 
+  [
+    {
+      "Id": "IM01", 
+      
+      "InputPrompt": "Read out the incident timeline for the incident with id=1103 in the chat.", 
+        
+      "Response": "Fetching the incident timeline for you.", 
+        
+      "Reference": "There is no active incidents with ID 1103. The current active incidents are 1116, 1112, and 1111. If you want, I can assist you with one of these incidents.", 
+
+      "Criteria": ["Knowledge Base", "Hallucination", "Error Handling"]
+    },
+
+    {
+      "Id": "IM02",
+
+      "InputPrompt": "What's the difference between an incident and a ping?",
+
+      "Response": "An incident is a business disruption event requiring a response to restore normal operations, often following a procedure. It can involve major issues or disasters affecting the business. A ping is a message sent to a person that requires acknowledgment when read. It helps the sender know who has seen the message and when, often used for quick communication or confirmations.",
+
+      "Reference": "An incident is a pre-configured response plan launched when a disruption occurs. It coordinates tasks, teams, and communications; often following a set procedure. It is used for major issues affecting the business. A ping is simpler: a message sent to one or many people that they can acknowledge, letting the sender see who responded and how quickly. It is used for quick communication or confirmations.",
+
+      "Criteria": ["Knowledge Base", "Hallucination"]
+    }
+  ]
+}
+
