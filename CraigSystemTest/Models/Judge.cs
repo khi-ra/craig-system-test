@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.Swift;
 using System.Text.Json;
 using CraigSystemTest.Models;
 
@@ -11,13 +12,16 @@ using Type = Google.GenAI.Types.Type;
 
 public class Judge
 {
-    private const string GEMINI_MODEL = "gemini-2.5-flash";
+    private const string GEMINI_MODEL = "gemini-3.6-flash";
     private readonly Client _gemini;
+
+    private Schema _judgeResultSchema;
+    private GenerateContentConfig _config;
 
     public Judge(string apiKey, string systemPrompt) {
         _gemini = new Client(apiKey: apiKey);
 
-        Schema judgeResultSchema = new Schema
+        this._judgeResultSchema = new Schema
         {
             Type = Type.Object,
             Properties = new Dictionary<string, Schema>
@@ -30,10 +34,10 @@ public class Judge
             Required = new List<string> { "TestCaseId", "Justification", "Score" }
         };
         
-        var config = new GenerateContentConfig
+        this._config = new GenerateContentConfig
         {
             Temperature = 0,
-            ResponseSchema = judgeResultSchema,
+            ResponseSchema = _judgeResultSchema,
             ResponseMimeType = "application/json",
             SystemInstruction = new Content
             {
@@ -51,9 +55,10 @@ public class Judge
         {
             PropertyNameCaseInsensitive = true
         };
+        string testCaseJson = JsonSerializer.Serialize<TestCase>(testCase, options);
 
         var judgeResponse = await _gemini.Models.GenerateContentAsync(
-                model: GEMINI_MODEL, contents: JsonSerializer.Serialize<TestCase>(testCase, options)
+                model: GEMINI_MODEL, contents: testCaseJson, config: this._config
         );
 
         string? judgeResponseText = judgeResponse.Candidates[0].Content.Parts[0].Text;
