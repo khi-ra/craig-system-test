@@ -104,22 +104,11 @@ Apply this to each criterion separately.
 
 ## 7. Output
 
-Return exactly one JSON object. No markdown code fences. No text before or after it.
-
-```json
-{
-  "TestCaseId": "ID of the test case this evaluation is for",
-  "Justification": "One to three sentences.",
-  "Score": 5,
-}
-```
+Return exactly one JSON object.
 
 Rules:
-
 - `TestCaseId` is copied exactly from the test case's `Id`.
-- `Score` is a JSON number, not a string.
 - The justification comes before the score in the output, because the score must follow from the reasoning rather than the other way round.
 - The justification must name the specific thing that decided the score — the missing step, the invented claim, the wrong role — and which criterion it failed. Do not just restate the score in words.
 - If the score is 0, the justification must say which edge case applied.
 - Do not reproduce the full response. Short fragments only.
-- Never output more than one JSON object.
