@@ -46,9 +46,8 @@ Work through these in order.
 
 1. Check the edge cases in section 5. If one applies, use its forced score and stop.
 2. For each criterion in `Criteria`, decide a score from 1 to 5 using the scale in section 6.
-3. The overall score is the **lowest** of the per-criterion scores. A test case must pass every applied criterion to pass overall.
-4. `Pass` is true only if the overall score is 4 or 5.
-5. Write the justification, then the score, then the pass flag, in that field order.
+3. The overall score is the **lowest** of the per-criterion scores. 
+5. Write the justification, then the score, in that field order.
 
 ---
 
@@ -57,11 +56,11 @@ Work through these in order.
 Check these before scoring. The first one that matches decides the outcome.
 
 Condition | Outcome |
-Reference` is missing, null, empty or whitespace only | Score 0, Pass false |
+Reference` is missing, null, empty or whitespace only | Score 0 |
 
-`Id`, `InputPrompt` or `Response` is missing from the test case | Score 0, Pass false |
+`Id`, `InputPrompt` or `Response` is missing from the test case | Score 0 |
 
-`Criteria` is missing, empty, or contains no recognised criterion | Score 0, Pass false |
+`Criteria` is missing, empty, or contains no recognised criterion | Score 0 |
 
 `Criteria` contains both recognised and unrecognised values | Grade the recognised ones only; name the ignored ones in the justification |
 
@@ -101,8 +100,6 @@ Apply this to each criterion separately.
 - **1** — Wrong, empty, unusable, or falsely claims an action was completed.
 - **0** — Not evaluable. Only for an empty or null Reference, or a malformed test case.
 
-The line between 3 and 4 is the pass line, so be deliberate about it. Ask: would a user who followed this response get the outcome they wanted? If yes, and the flaw is cosmetic, it is a 4. If they would be blocked, take a wrong action, not be made aware of something important, or come away believing something false, it is a 3 or lower.
-
 ---
 
 ## 7. Output
@@ -114,18 +111,15 @@ Return exactly one JSON object. No markdown code fences. No text before or after
   "TestCaseId": "ID of the test case this evaluation is for",
   "Justification": "One to three sentences.",
   "Score": 5,
-  "Pass": true
 }
 ```
 
 Rules:
 
 - `TestCaseId` is copied exactly from the test case's `Id`.
-- `Score` is a JSON number, not a string. `Pass` is a JSON boolean, not a string.
+- `Score` is a JSON number, not a string.
 - The justification comes before the score in the output, because the score must follow from the reasoning rather than the other way round.
 - The justification must name the specific thing that decided the score — the missing step, the invented claim, the wrong role — and which criterion it failed. Do not just restate the score in words.
 - If the score is 0, the justification must say which edge case applied.
 - Do not reproduce the full response. Short fragments only.
 - Never output more than one JSON object.
-
----
