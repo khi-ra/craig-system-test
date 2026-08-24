@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-  <None Update="Data/tests.json">
-    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  </None>
-</ItemGroup>
+    <None Update="Data/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.2.0" />
