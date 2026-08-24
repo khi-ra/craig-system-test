@@ -12,13 +12,17 @@ using Environment = System.Environment;
 
 DotNetEnv.Env.Load();
 Client geminiClient;
-string geminiModel = "gemini-2.5-flash";
+const string GEMINI_MODEL = "gemini-2.5-flash";
 
-// Create Gemini client
+// create Gemini client
 try
 {
-    string apiKey = Environment.GetEnvironmentVariable("GEMINI_API_KEY");
+    string? apiKey = Environment.GetEnvironmentVariable("GEMINI_API_KEY");   
     geminiClient = new Client(apiKey: apiKey);
+
+    string systemPromptFile = Path.Combine(AppContext.BaseDirectory, "Data", "JudgeSystemPrompt.txt");
+    string systemPrompt = File.ReadAllText(systemPromptFile);
+
     var config = new GenerateContentConfig
     {
         Temperature = 0,
@@ -27,24 +31,31 @@ try
         {
             Parts = new List<Part>
             {
-                new Part { Text = "You are a helpful coding assistant. Always answer in C# and keep it short." }
+                new Part { Text = systemPrompt }
             }
         }
     };
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Error loading Gemini API key: {ex.Message}");
+    Console.WriteLine($"Error creating Gemini client: {ex.Message}");
     throw;
 }
 
+
+// deserialize json test files
+List<TestCase>? testCases;
 try
 {
-    string path = Path.Combine(AppContext.BaseDirectory, "Data", "tests.json");
-    var testCaseJson = File.ReadAllText(path);
+    string testFile = Path.Combine(AppContext.BaseDirectory, "Data", "IncidentManagementTests.json");
+    string testFileContent = File.ReadAllText(testFile);
 
-    TestCase testCase = JsonSerializer.Deserialize<TestCase>(testCaseJson);
-    Console.WriteLine($"DESERIALIZED OBJECT:\n{testCase.Id}\n{testCase.InputPrompt}\n{testCase.Response}\n");
+    var options = new JsonSerializerOptions
+    {
+        PropertyNameCaseInsensitive = true
+    };
+    TestCaseFile? file = JsonSerializer.Deserialize<TestCaseFile>(testFileContent, options);
+    testCases = file?.TestCases ?? new List<TestCase>();
 }
 catch (Exception ex)
 {
@@ -52,6 +63,11 @@ catch (Exception ex)
     throw;
 }
 
+// use gemini to evaluate test cases
+try
+{
+    
+}
 
 
 
