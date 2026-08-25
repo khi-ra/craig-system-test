@@ -1,5 +1,5 @@
 {
-  "Tests":
+  "TestCases":
   [
     {
       "InputPrompt": "Why does the app need my location, and what happens to that data?",
