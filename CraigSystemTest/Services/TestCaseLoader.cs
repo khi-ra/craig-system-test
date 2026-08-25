@@ -14,12 +14,6 @@ public class TestCaseLoader
 
         List<TestCase> testCases = file?.TestCases ?? new List<TestCase>();
 
-        if (testCases.Count == 0)
-
-        {
-            throw new InvalidDataException($"No test cases in {filePath}");
-        }
-        
-        return testCases;
+        return testCases.Count == 0 ? throw new InvalidDataException($"No test cases in {filePath}") : testCases;
     }
 }
