@@ -5,6 +5,7 @@ public class TestCaseLoader
 {
     private readonly JsonSerializerOptions _options = new() { PropertyNameCaseInsensitive = true };
 
+
     public List<TestCase> Load(string filePath)
     {
         string testFileContent = File.ReadAllText(filePath);
@@ -14,6 +15,7 @@ public class TestCaseLoader
         List<TestCase> testCases = file?.TestCases ?? new List<TestCase>();
 
         if (testCases.Count == 0)
+
         {
             throw new InvalidDataException($"No test cases in {filePath}");
         }
