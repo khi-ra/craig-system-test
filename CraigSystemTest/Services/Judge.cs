@@ -1,22 +1,22 @@
 namespace CraigSystemTest.Services;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.Swift;
 using System.Text.Json;
 using CraigSystemTest.Models;
 using Google.GenAI;
 using Google.GenAI.Types;
-using Microsoft.VisualBasic;
-using Superpower.Model;
+using System.Text.Encodings.Web;
 using Type = Google.GenAI.Types.Type;
 using Environment = System.Environment;
-using File = System.IO.File;
 public class Judge
 {
     private const string GEMINI_MODEL = "gemini-3.6-flash";
     private readonly Client _gemini;
     private readonly Schema _judgeResultSchema;
     private readonly GenerateContentConfig _config;
-    private readonly JsonSerializerOptions _options = new() { PropertyNameCaseInsensitive = true };
+    private readonly JsonSerializerOptions _options = new() 
+    { 
+        PropertyNameCaseInsensitive = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
     
 
     public Judge(string systemPrompt) {
