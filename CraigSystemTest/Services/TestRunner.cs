@@ -2,7 +2,7 @@ namespace CraigSystemTest.Services;
 
 using System.Management;
 using System.Text.Json;
-
+using System.Linq;
 using CraigSystemTest.Models;
 
 public class TestRunner(Judge judge, TestCaseLoader loader)
@@ -24,6 +24,9 @@ public class TestRunner(Judge judge, TestCaseLoader loader)
             {
                 PrintEvaluatedTests(tests[i], evaluatedTests[i]);
             }
+
+            double averageScore = evaluatedTests.Count > 0 ? evaluatedTests.Average(e => e.Score) : 0.0;
+            Console.WriteLine($"The average score of the {Path.GetFileNameWithoutExtension(filePath)} test cases = {averageScore}\n");
         }
     }
 
