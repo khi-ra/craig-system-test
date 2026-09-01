@@ -10,7 +10,7 @@ public class TestCaseLoader
     {
         string testFileContent = File.ReadAllText(filePath);
 
-        TestCaseFile? file = JsonSerializer.Deserialize<TestCaseFile>(testFileContent, this._options);
+        TestCaseFile? file = JsonSerializer.Deserialize<TestCaseFile>(testFileContent, _options);
 
         List<TestCase> testCases = file?.TestCases ?? new List<TestCase>();
 
