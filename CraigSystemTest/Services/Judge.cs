@@ -14,8 +14,8 @@ public class Judge
     private readonly GenerateContentConfig _config;
     private readonly JsonSerializerOptions _options = new() 
     { 
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         PropertyNameCaseInsensitive = true,
-        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
     
 
@@ -83,6 +83,7 @@ public class Judge
         }
 
         EvaluatedTestCase? evaluatedTestCase = JsonSerializer.Deserialize<EvaluatedTestCase>(judgeResponseText, _options);
+        
         return evaluatedTestCase ?? new EvaluatedTestCase
             {
                 TestCaseId = testCase.Id,

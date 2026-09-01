@@ -4,6 +4,7 @@ using System.Management;
 using System.Text.Json;
 using System.Linq;
 using CraigSystemTest.Models;
+using System.Text.Encodings.Web;
 
 public class TestRunner(Judge judge, TestCaseLoader loader)
 {
@@ -58,6 +59,7 @@ public class TestRunner(Judge judge, TestCaseLoader loader)
     {
         JsonSerializerOptions options = new()
         {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             PropertyNameCaseInsensitive = true,
             WriteIndented = true
         };
