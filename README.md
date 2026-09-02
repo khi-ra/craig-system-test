@@ -19,7 +19,7 @@ The judge does **not** answer the user's question or talk to CRAiG. It only grad
 
 ## How it works
 
-+ `TestRunner` takes a list of JSON file names and hands the filepath of each file creates to `TestCaseLoader`.
++ `TestRunner` takes a list of JSON file names and hands each file's filepath to `TestCaseLoader`.
 + `TestCaseLoader` reads the JSON file and deserialises it into a list of `TestCase` objects.
 + `TestRunner` then sends each test case from that list to the `Judge` to evaluate.
 + `Judge` evaluates the test case using Gemini and returns an `EvaluatedTestCase`.
